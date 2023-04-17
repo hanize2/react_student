@@ -1,4 +1,9 @@
 import './ch_05.css';
+import { CssModules } from "./components/CssModules";
+import { StyledJsx } from "./components/StyledJsx";
+import { StyledComponents } from "./components/StyledComponents";
+import { Emotion } from "./components/Emotion";
+import { TailwindCss } from "./components/TailwindCss";
 
 const fontStyle = {
   fontSie: "1em",
@@ -22,6 +27,27 @@ export const App = () => {
         <p className={fontStyle}>사전 정의 후 지정 방식입니다.</p>
         <button className="button">버튼</button>
       </div>
+      <div className="container">
+        <p className={fontStyle}>사전 정의 후 지정 방식입니다.</p>
+        <button className="button">버튼</button>
+      </div>
     </>
+  );
+};
+
+// 2. 여러가지 방식
+export const App2 = () => {
+  return (
+    <div>
+      {/* CSS Modules 방식 */}
+      <CssModules />
+      {/* StyledJsx 방식 */}
+      <StyledJsx />
+      <StyledComponents />
+      {/* Emotion 방식 */}
+      <Emotion />
+      {/* TailwindCss 패키지 활용 */}
+      <TailwindCss />
+    </div>
   );
 };
