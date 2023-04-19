@@ -1,12 +1,9 @@
 import './ch_05.css';
-import { CssModules } from "./components/CssModules";
-import { StyledJsx } from "./components/StyledJsx";
-import { StyledComponents } from "./components/StyledComponents";
-import { Emotion } from "./components/Emotion";
-import { TailwindCss } from "./components/TailwindCss";
 
+// css 속성명은 camelCase
+// 값은 문자열 또는 수치
 const fontStyle = {
-  fontSie: "1em",
+  fontSize: "1.5em",
 };
 
 // 1. inline-style 
@@ -20,34 +17,13 @@ export const App = () => {
         <button className="button">버튼</button>
       </div>
       <div className="container">
-        <p style={{ fontSize: "2em" }}>직접기술 방식입니다.</p>
+        <p style={{ fontSize: "2.5em" }}>직접기술 방식입니다.</p>
         <button className="button">버튼</button>
       </div>
       <div className="container">
-        <p className={fontStyle}>사전 정의 후 지정 방식입니다.</p>
-        <button className="button">버튼</button>
-      </div>
-      <div className="container">
-        <p className={fontStyle}>사전 정의 후 지정 방식입니다.</p>
+        <p style={fontStyle}>사전 정의 후 지정 방식입니다.</p>
         <button className="button">버튼</button>
       </div>
     </>
-  );
-};
-
-// 2. 여러가지 방식
-export const App2 = () => {
-  return (
-    <div>
-      {/* CSS Modules 방식 */}
-      <CssModules />
-      {/* StyledJsx 방식 */}
-      <StyledJsx />
-      <StyledComponents />
-      {/* Emotion 방식 */}
-      <Emotion />
-      {/* TailwindCss 패키지 활용 */}
-      <TailwindCss />
-    </div>
   );
 };
