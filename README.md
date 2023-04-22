@@ -1,1 +1,1 @@
-# react_student
+# 학생용 실습 코드
