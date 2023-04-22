@@ -13,46 +13,60 @@
 // 해당 패키지 버전을 8.0이상으로 설치
 // npm install node-sass@8.0
 
-import classes from "./CssModules.module.scss";
-import classNames from "classnames/bind";
+// global(전역) css class를 사용하고자 할땐 문자열로 적어준다.
+// className = { "container"} 해당 container css class는 컴포넌트 local이 아닌 전역(index.css 등) 에서 가져온 css 이다.
+// 전역 css class는 고유 이름이 붙지 않고 local만 고유 이름이 붙는다. 브라우저 소스 보기 참고
+import style from "./CssModules.module.scss";
+import classNamesBind from "classnames/bind";
+// import classNames from "classnames";
 
-const CssModules = () => {
+export const CssModules = () => {
   return (
-    <div className={classes.container}>
-      <p className={classes.title}>CSS Modules입니다.. 1개 class 사용</p>
-      <button className={classes.button}>버튼</button>
+    <div className={style.container}>
+      <p className={style.title}>CSS Modules입니다.. 1개 class 사용</p>
+      <button className={style.button}>버튼</button>
     </div>
   );
 };
 
-const CssModulesMany = () => {
+export const CssModulesMany = () => {
   return (
-    <div className={`${classes.container} ${classes.container}`}>
+    <div className={`${style.container} ${style.container}`}>
       {/* 여러개 class 삽입 시 JS의 템플릿 리터럴 사용 */}
-      <p className={classes.title}>CSS Modules입니다.. 여러개 class 사용</p>
-      <button className={classes.button}>버튼</button>
+      <p className={style.title}>CSS Modules입니다.. 여러개 class 사용</p>
+      <button className={style.button}>버튼</button>
     </div>
   );
 };
 
-// classes.container 이렇게 매번 classes.[클래스 이름] 이런식으로 사용하기 귀찮다~
+// style.container 이렇게 매번 style.[클래스 이름] 이런식으로 사용하기 귀찮다~
 // 좋은 제품 소개합니다...
-// npm install classnames
+// npm i classnames
 
-const cx = classNames.bind(classes);
+const cx = classNamesBind.bind(style); // style에서 받아온 class들을 cx 이름에 바인딩 시킨다.
 
-const CssModulesClassNames = () => {
+export const CssModulesClassNames = () => {
   return (
     <div className={cx("container", "container2")}>
       {/* <div className={cx(`container container`)}>
         혹은 이렇게 템플릿 리터럴로..이렇게하면 중복된 class 도 체크된다.
         */}
-      <p className={classes.title}>
+      <p className={style.title}>
         CSS Modules입니다.. classnames lib 사용으로 여러개 class 사용
       </p>
-      <button className={classes.button}>버튼</button>
+      <button className={style.button}>버튼</button>
     </div>
   );
 };
 
-export { CssModules, CssModulesMany, CssModulesClassNames };
+// 조건에 따른 css class 적용
+export const CssModulesConditions = (props) => {
+  const activeCss = props.isActiveButton === "on";
+
+  return (
+    <div className={style.container}>
+      <p className={style.title}>CSS Modules입니다.. 값 넘기기</p>
+      <button className={cx({ button: activeCss })}>버튼</button>
+    </div>
+  );
+};
