@@ -21,7 +21,7 @@ export const App = () => {
       <CssModulesConditions isActiveButton="off" />
       {/* StyledJsx 방식 */}
       <StyledJsx />
-      <StyledComponents />
+      <StyledComponents isActiveButton={true} />
       {/* TailwindCss 패키지 활용 */}
       <TailwindCss />
     </div>

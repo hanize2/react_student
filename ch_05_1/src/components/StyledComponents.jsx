@@ -2,16 +2,7 @@
 // 파일 작성 후 npm 패키지 설치
 // npm install styled-components
 
-import styled from "styled-components";
-
-export const StyledComponents = () => {
-    return (
-        <SContainer>
-            <STitle>styled components입니다</STitle>
-            <SButton>버튼</SButton>
-        </SContainer>
-    );
-};
+import styled, { css } from "styled-components";
 
 const SContainer = styled.div`
   border: solid 1px #aaa;
@@ -36,4 +27,19 @@ const SButton = styled.button`
     color: #fff;
     cursor: pointer;
   }
+
+  ${(props) =>
+    props.isActiveButton &&
+    css`
+      border-radius: 8px;
+    `};
 `;
+
+export const StyledComponents = () => {
+  return (
+    <SContainer>
+      <STitle>styled components입니다</STitle>
+      <SButton isActiveButton={false}>버튼</SButton>
+    </SContainer>
+  );
+};
