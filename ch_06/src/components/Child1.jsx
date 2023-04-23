@@ -8,7 +8,7 @@ const style = {
   padding: "8px",
 };
 
-export const Child1 = memo((props) => {
+const Child = (props) => {
   console.log("Child1 렌더링");
 
   // Props에서 함수를 전개(분할 대입)
@@ -22,4 +22,6 @@ export const Child1 = memo((props) => {
       <Child3 />
     </div>
   );
-});
+};
+
+export const Child1 = memo(Child);
