@@ -2,8 +2,9 @@ import React, { useState, useMemo, useRef, useCallback } from "react";
 
 const getAverage = (numbers) => {
   console.log("평균값 계산중..");
+
   if (numbers.length === 0) return 0;
-  const sum = numbers.reduce((a, b) => a + b);
+  const sum = numbers.reduce((a, b) => a + b); // numbers 배열의 모든 값을 더해준다.
   return sum / numbers.length;
 };
 
@@ -12,20 +13,40 @@ const Average = () => {
   const [number, setNumber] = useState("");
   const inputEl = useRef(null);
 
-  const onChange = useCallback((e) => {
+  // input 값이 바뀔때 마다 State도 바뀌면서 재렌더링된다.
+  const onChange = (e) => {
     setNumber(e.target.value);
-  }, []); // 컴포넌트가 처음 렌더링 될 때만 함수 생성
+  };
+
+  // const onChange = useCallback((e) => {
+  //   setNumber(e.target.value);
+  // }, []); // 컴포넌트가 처음 렌더링 될 때만 함수 생성
+
+  const onInsert = () => {
+    const nextList = list.concat(parseInt(number)); // concat() 함수를 이용해 배열을 재생성해준다. 불변성을 위해.
+    setList(nextList); // 재생성된 배열값으로 list값 update
+    setNumber(""); // number 값 빈값으로 update. input에 입력된 값을 지움.
+    inputEl.current.focus(); // input에 포커스를 위치시킨다.
+  };
+
+  /*
   const onInsert = useCallback(() => {
     const nextList = list.concat(parseInt(number));
     setList(nextList);
     setNumber("");
     inputEl.current.focus();
-  }, [number, list]); // number 혹은 list 가 바뀌었을 때만 함수 생성
+  }, [number, list]); // number 혹은 list가 바뀌었을 때만 함수 생성
+  */
 
+  // const avg = getAverage(list);
+
+  // input 값이 바뀔때 마다 getAverage 함수가 재 실행 되기에 특정값이 바뀔때만 재렌더링 하도록 수정.
+  // list값이 바뀔때만 getAverage 함수 실행
   const avg = useMemo(() => getAverage(list), [list]);
 
   return (
     <div>
+      {/* 컴포넌트에서 DOM에 직접 접근하기 위해 ref 사용 */}
       <input value={number} onChange={onChange} ref={inputEl} />
       <button onClick={onInsert}>등록</button>
       <ul>
