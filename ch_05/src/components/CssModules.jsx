@@ -16,16 +16,16 @@
 import classes from "./CssModules.module.scss";
 import classNames from "classnames/bind";
 
-const CssModules = () => {
+export const CssModules = () => {
   return (
     <div className={classes.container}>
       <p className={classes.title}>CSS Modules입니다.. 1개 class 사용</p>
-      <button className={classes.button}>버튼</button>
+      <button className="btn btn-primary">버튼</button>
     </div>
   );
 };
 
-const CssModulesMany = () => {
+export const CssModulesMany = () => {
   return (
     <div className={`${classes.container} ${classes.container}`}>
       {/* 여러개 class 삽입 시 JS의 템플릿 리터럴 사용 */}
@@ -41,7 +41,7 @@ const CssModulesMany = () => {
 
 const cx = classNames.bind(classes);
 
-const CssModulesClassNames = () => {
+export const CssModulesClassNames = () => {
   return (
     <div className={cx("container", "container2")}>
       {/* <div className={cx(`container container`)}>
@@ -54,5 +54,3 @@ const CssModulesClassNames = () => {
     </div>
   );
 };
-
-export { CssModules, CssModulesMany, CssModulesClassNames };
