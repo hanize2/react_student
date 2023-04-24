@@ -24,7 +24,7 @@ const Average = () => {
   // }, []); // 컴포넌트가 처음 렌더링 될 때만 함수 생성. 함수 재 생성을 막는다.
 
   const onInsert = () => {
-    const nextList = list.concat(parseInt(number)); // concat() 함수를 이용해 배열을 재생성해준다. 불변성을 위해.
+    const nextList = list.concat(parseInt(number)); // concat() 함수를 이용해 배열을 재생성해준다
     setList(nextList); // 재생성된 배열값으로 list값 update
     setNumber(""); // number 값 빈값으로 update. input에 입력된 값을 지움.
     inputEl.current.focus(); // inputEl.current는 <inpur> DOM 노드를 가리키게 된다. 따라서 input에 포커스를 위치시킨다.
