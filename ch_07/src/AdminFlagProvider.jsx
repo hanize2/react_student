@@ -1,3 +1,4 @@
+// Provider 파일이며 components 폴더 아래에 providers 폴더 생성 후 복사해준다.
 import { createContext, useState } from "react";
 
 export const AdminFlagContext = createContext({});
