@@ -1,7 +1,6 @@
-import { createContext, useState } from "react";
+import { useState } from "react";
 import { Card } from "./components/Card";
-
-export const AdminFlagContext = createContext({});
+import AdminFlagContext from "./components/providers/AdminFlagContext";
 
 export const App = () => {
   // 관리자 플래그

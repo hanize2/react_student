@@ -1,6 +1,5 @@
 import { useContext } from "react";
-
-import { AdminFlagContext } from "./providers/AdminFlagProvider";
+import AdminFlagContext from "./providers/AdminFlagContext";
 
 const style = {
   width: "100px",
