@@ -9,6 +9,8 @@ export const App = () => {
   // 전환 클릭 시
   const onClickSwitch = () => setIsAdmin(!isAdmin);
 
+  // Provider를 사용해 Context의 값을 변경할 수 있다.
+  // App 컴포넌트에서 바로 Provider에 value를 넣어줬다. 이 방식보다 ch_07의 방식이 더 확장성이 좋은 방식이다.
   return (
     <AdminFlagContext.Provider value={{ isAdmin, setIsAdmin }}>
       <div>
