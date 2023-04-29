@@ -19,6 +19,8 @@ export const AdminFlagProvider = ({ children }) => {
   // 관리자 플래그
   const [isAdmin, setIsAdmin] = useState(false);
 
+  // value 속성에 객체로 명시해주면 렌더링시 계속 새로운 객체를 만들기 때문에
+  // useMemo를 사용(캐싱)하여 메모이징해준다.
   const values = useMemo(() => {
     return {
       state: { isAdmin },
