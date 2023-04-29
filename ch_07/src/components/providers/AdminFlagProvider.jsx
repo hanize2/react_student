@@ -1,5 +1,5 @@
 // Provider 파일이며 components 폴더 아래에 providers 폴더 생성 후 복사해준다.
-import { createContext, useState } from "react";
+import { createContext, useMemo, useState } from "react";
 
 // createContext 인수에는 디폴트값 설정가능. 여기에선 빈 객체 사용.
 // Context를 참조하는 쪽에 해당 컴포넌트를 사용하기위해 export 해줘야 한다. (주의!!)
@@ -19,10 +19,12 @@ export const AdminFlagProvider = ({ children }) => {
   // 관리자 플래그
   const [isAdmin, setIsAdmin] = useState(false);
 
-  const values = {
-    state: { isAdmin },
-    actions: { setIsAdmin },
-  };
+  const values = useMemo(() => {
+    return {
+      state: { isAdmin },
+      actions: { setIsAdmin },
+    };
+  }, [isAdmin]);
 
   // AdminFlagContext 안에 Provider가 있으므로 각각 children을 감싼다.
   // value 안에 글로벌로 다룰 실제값을 설정
