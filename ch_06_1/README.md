@@ -2,4 +2,4 @@
 
 ## 다른 예제
 
-Average.js
+Average.js 코드 보기
