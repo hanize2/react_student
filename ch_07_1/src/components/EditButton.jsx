@@ -10,10 +10,10 @@ const style = {
 
 export const EditButton = () => {
   // Context 안의 Admin을 얻는다
-  const { state } = useContext(AdminFlagContext);
+  const { isAdmin } = useContext(AdminFlagContext);
 
   return (
-    <button style={style} disabled={!state.isAdmin}>
+    <button style={style} disabled={!isAdmin}>
       수정
     </button>
   );
