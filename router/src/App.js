@@ -17,11 +17,8 @@ function App() {
         <NavLink to="/main" activeclassname={App.active}>
           MAIN
         </NavLink>
-        | {/* react-router-dom V6 이후부터 아래 처럼 사용 */}
-        <NavLink
-          to="/login"
-          className={({ isActive }) => (isActive ? "active" : "")}
-        >
+        | {/* react-router V6 이후부터 아래 처럼 사용 */}
+        <NavLink to="/login" className={({ isActive }) => isActive && "active"}>
           LOGIN
         </NavLink>
         | <Link to="/info">INFO</Link> | <Link to="/param/4">PARAM</Link>
