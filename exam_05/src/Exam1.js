@@ -38,7 +38,7 @@ const Exam1 = () => {
             로 만들어 주세요.
           </li>
           <li className="list-group-item">
-            문제 1-참조) Email, Pwd 컴포턴트 CSS는 exam1.css 파일안의 CSS를
+            문제 1-참조) Email, Pwd 컴포넌트 CSS는 exam1.css 파일안의 CSS를
             사용하세요.
           </li>
           <li className="list-group-item">
