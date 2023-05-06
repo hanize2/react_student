@@ -4,10 +4,10 @@ import exam1Gif from "./exam1.gif";
 
 const Exam1 = () => {
   return (
-    <>
+    <div className="container row justify-content-md-center">
       <main className="form-signin w-100 m-auto">
         <form>
-          <h1 className="h3 mb-3 fw-normal">로그인 해주세요...</h1>
+          <h1 className="h3 mb-3 fw-normal">1. 로그인 해주세요...</h1>
 
           <div className="form-floating">
             <EmailInputComponents />
@@ -30,7 +30,7 @@ const Exam1 = () => {
       </main>
       <div>
         <ol className="list-group list-group">
-          <li className="list-group-item">
+          <li className="list-group-item text-center">
             <img alt="참고화면" src={exam1Gif} />
           </li>
           <li className="list-group-item">
@@ -57,7 +57,7 @@ const Exam1 = () => {
           </li>
         </ol>
       </div>
-    </>
+    </div>
   );
 };
 
