@@ -7,7 +7,7 @@ const Exam1 = () => {
     <>
       <main className="form-signin w-100 m-auto">
         <form>
-          <h1 className="h3 mb-3 fw-normal">로그인 해주세요...</h1>
+          <h1 className="h3 mb-3 fw-normal">1. 로그인 해주세요...</h1>
 
           <div className="form-floating">
             <EmailInputComponents />
