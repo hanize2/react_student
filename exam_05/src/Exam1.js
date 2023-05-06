@@ -30,7 +30,7 @@ const Exam1 = () => {
       </main>
       <div>
         <ol className="list-group list-group">
-          <li className="list-group-item">
+          <li className="list-group-item text-center">
             <img alt="참고화면" src={exam1Gif} />
           </li>
           <li className="list-group-item">
