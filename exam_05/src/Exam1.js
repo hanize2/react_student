@@ -1,5 +1,6 @@
 import EmailInputComponents from "./components/EmailInputComponents";
 import PwdInputComponents from "./components/PwdInputComponents";
+import exam1Gif from "./exam1.gif";
 
 const Exam1 = () => {
   return (
@@ -29,6 +30,9 @@ const Exam1 = () => {
       </main>
       <div>
         <ol className="list-group list-group">
+          <li className="list-group-item">
+            <img alt="참고화면" src={exam1Gif} />
+          </li>
           <li className="list-group-item">
             문제 1) EmailInputComponents, PwdInputComponents를 Styled Component
             로 만들어 주세요.
