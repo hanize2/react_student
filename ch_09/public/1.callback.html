@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      /*
+      1. 비동기 처리 시 실행 순서 문제
+      setTimeout()은 비동기 함수의 호출이기 때문에 실행이 완료될 때 까지 기다리지 않고 다음 라인인 11번째 줄로 넘어가버린다.
+      findUser(1)는 undefined를 리턴하게 되고 user 변수에는 그대로 undefined가 할당된다.
+      0.1초 후에 setTimeout() 함수의 첫번째 인자로 넘어간 콜백 함수가 실행되면서 waited 0.1 sec.가 출력되고
+      user 로컬 변수에 원하는 객체가 할당되었지만 이미 늦은 상황이 되었다.
+      */
+
+      // function findUser(id) {
+      //   let user;
+      //   setTimeout(function () {
+      //     console.log("waited 0.1 sec.");
+      //     user = {
+      //       id: id,
+      //       name: "User" + id,
+      //       email: id + "@test.com",
+      //     };
+      //   }, 100);
+      //   return user;
+      // }
+
+      // const user = findUser(1);
+      // console.log("user:", user);
+
+      /*
+      2. callback 함수로 처리
+      findUserAndCallBack() 함수의 2번째 인자로 결과값을 이용해서 실행될 로직을 넘겼고,
+      setTimeout() 함수는 0.1초 후에 이 콜백 함수를 호출하였다.
+      이와 같이 비동기 함수를 호출할 때는 결과값을 리턴 받으려고 하지말고,
+      결과값을 통해 처리할 로직을 콜백 함수로 넘기는 방식 해줘야 예상된 결과르 얻을 수 있다.
+      하지만 콜백 함수는 여러번의 비동기 함수를 실핼할 때 중첩을 해야하고
+      이런 중첩이 늘어나면 코드 가독성이 떨어지고 유지보수가 힘들어지게 된다.
+      이것을 콜백지옥이라고 부른다.
+      https://seunghyun.in/assets/images/post/7/3.png
+      */
+
+      // function findUserAndCallBack(id, cb) {
+      //   setTimeout(function () {
+      //     console.log("waited 0.1 sec.");
+      //     const user = {
+      //       id: id,
+      //       name: "User" + id,
+      //       email: id + "@test.com",
+      //     };
+      //     cb(user);
+      //   }, 100);
+      // }
+
+      // findUserAndCallBack(1, function (user) {
+      //   console.log("user:", user);
+      // });
+
+      /*
+      3. Promise를 이용하여 콜백 문제 해결
+      콜백 함수를 인자로 넘기는 대신에 Promise 객체를 생성하여 리턴하였고,
+      호출부에서는 리턴받은 Promise 객체에
+      then() 메서를 호출하여 결과값을 가지고 실행할 로직을 넘겨주고 있다.
+      콜백 함수를 통해 비동기 처리를 하던 기존 코드와 가장 큰 차이점은
+      함수를 호출하면 Promise 타입의 결과값이 리턴되고,
+      이 결과값을 가지고 다음에 수행할 작업을 진행한다는 것이다다.
+      따라서 기존 스타일보다 비동기 처리 코드임에도 불구하고 마치
+      동기 처리 코드 처럼 코드가 읽히기 때문에 좀 더 직관적으로 느껴지게 된다.
+
+      Promise는 현재에는 당장 얻을 수는 없지만 가까운 미래에는 얻을 수 있는
+      어떤 데이터에 접근하기 위한 방법을 제공한다.
+      당장 원하는 데이터를 얻을 수 없다는 것은 데이터를 얻는데까지 지연 시간(delay, latency)이 발생하는 경우를 말한다.
+      */
+
+      // findUser(1).then(function (user) {
+      //   console.log("user:", user);
+      // });
+
+      // function findUser(id) {
+      //   return new Promise(function (resolve) {
+      //     setTimeout(function () {
+      //       console.log("waited 0.1 sec.");
+      //       const user = {
+      //         id: id,
+      //         name: "User" + id,
+      //         email: id + "@test.com",
+      //       };
+      //       resolve(user);
+      //     }, 100);
+      //   });
+      // }
+
+      /*
+      4. Promise 생성 및 활용 방법
+      */
+      // 기본 Promise 함수 생성
+      // 생성자의 인자로 넘어가는 함수 인자의 바디에서는 resolve()나 reject() 함수를 정상 처리,
+      // 예외 발생 여부에 따라 적절히 호출해줘야 한다.
+      // 일반적으로 resolve() 함수의 인자로는 미래 시점에 얻게될 결과를 넘겨주고,
+      // reject() 함수의 인자로는 미래 시점에 발생할 예외를 넘겨준다.
+      function returnPromise() {
+        return new Promise((resolve, reject) => { ... } );
+      }
+
+      // 활용 예
+      function divide(numA, numB) {
+        return new Promise((resolve, reject) => {
+          if (numB === 0) reject(new Error("Unable to divide by 0."));
+          else resolve(numA / numB);
+        });
+      }
+
+      divide(8, 2)
+        .then((result) => console.log("성공:", result))
+        .catch((error) => console.log("실패:", error));
+    </script>
+  </body>
+</html>
